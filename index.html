@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>CodePen - Model-T1</title>
+
+  <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <style>
+    .tab-content {
+      border: 1px solid #ccc;
+      border-top: 0;
+      padding: 5px 15px;
+    }
+  </style>
+
+  <script>
+    window.console = window.console || function(t) {};
+  </script>
+
+</head>
+
+<body translate="no">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <blockquote class="blockquote">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+          <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+        </blockquote>
+
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active">
+            <a rel="nofollow" href="#home" role="tab" data-toggle="tab">
+              <icon class="fa fa-home"></icon> Home
+            </a>
+          </li>
+          <li>
+            <a rel="nofollow" href="#profile" role="tab" data-toggle="tab">
+              <i class="fa fa-user"></i> Profile
+            </a>
+          </li>
+          <li>
+            <a rel="nofollow" href="#messages" role="tab" data-toggle="tab">
+              <i class="fa fa-envelope"></i> Messages
+            </a>
+          </li>
+          <li>
+            <a rel="nofollow" href="#settings" role="tab" data-toggle="tab">
+              <i class="fa fa-cog"></i> Settings
+            </a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane fade active in" id="home">
+            <h2>Home Content Goes Here</h2>
+            <img src="http://lorempixel.com/400/400/cats/1" alt="Cats">
+          </div>
+          <div class="tab-pane fade" id="profile">
+            <h2>Profile Content Goes Here</h2>
+            <img src="http://lorempixel.com/400/400/cats/2" alt="Cats">
+          </div>
+          <div class="tab-pane fade" id="messages">
+            <h2>Messages Content Goes Here</h2>
+            <img src="http://lorempixel.com/400/400/cats/3" alt="Cats">
+          </div>
+          <div class="tab-pane fade" id="settings">
+            <h2>Settings Content Goes Here</h2>
+            <img src="http://lorempixel.com/400/400/cats/4" alt="Cats">
+          </div>
+        </div>
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+          </div>
+          <div class="panel-body">
+            Panel content
+            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+            <button type="button" class="btn btn-primary">Primary</button>
+
+            <!-- Secondary, outline button -->
+            <button type="button" class="btn btn-secondary">Secondary</button>
+
+            <!-- Indicates a successful or positive action -->
+            <button type="button" class="btn btn-success">Success</button>
+
+            <!-- Contextual button for informational alert messages -->
+            <button type="button" class="btn btn-info">Info</button>
+
+            <!-- Indicates caution should be taken with this action -->
+            <button type="button" class="btn btn-warning">Warning</button>
+
+            <!-- Indicates a dangerous or potentially negative action -->
+            <button type="button" class="btn btn-danger">Danger</button>
+
+            <!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
+            <button type="button" class="btn btn-link">Link</button>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-md-6">
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Well done!</h4>
+          <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+          <hr>
+          <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+        </div>
+        <div class="bd-callout bd-callout-warning">
+          <h4 id="conveying-meaning-to-assistive-technologies">Conveying meaning to assistive technologies</h4>
+
+          <p>Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g.
+            the visible text), or is included through alternative means, such as additional text hidden with the <code class="highlighter-rouge">.sr-only</code> class.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/knockout/3.4.2/knockout-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script src="//cdn.bootcss.com/require.js/2.3.3/require.min.js"></script>
+  
+<script>
+  // contents of main.js:
+  require.config({
+    baseUrl: "/libs/",
+    paths: {
+      mbt: '../scripts/mbt'
+    }
+  });
+
+
+  require(['trans/cd001'], function(CD0001) {
+    // 初始化CD0001交易
+    var cd1 = new CD0001({
+      instansID: 45345,
+      show: function() {
+        console.log(this.Age);
+      },
+      pm: {
+        api: "127.0.0.2"
+      }
+    })
+    
+    cd1.then((res) => {
+      console.log(res);
+      window.res = res;
+    })
+  })
+</script>
+
+</body>
+
+</html>
