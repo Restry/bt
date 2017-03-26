@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
@@ -14,6 +15,35 @@
       border-top: 0;
       padding: 5px 15px;
     }
+    
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .btn{ position:relative;}
+    .btn.loading {
+      color: transparent;
+    }
+    
+    .btn.loading:after {
+      display: block;
+      content: " ";
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      top: 50%;
+      left: 50%;
+      margin: -13px 0 0 -13px;
+      transform: translateX(-50%);
+      border-radius: 13px;
+      border: 3px solid;
+      border-color: white rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.4);
+      animation: spin 1.5s cubic-bezier(0.25, 0.47, 0.71, 0.3) infinite;
+    }
   </style>
 
   <script>
@@ -26,18 +56,18 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <blockquote class="blockquote">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-          <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          <p>MBT是基础，通过MBT初始化交易函数。再通过交易函数附加上下文得到交易的实例， 加载依赖信息</p>
+          <footer>MBT to <cite title="trancations">trancations </cite></footer>
         </blockquote>
 
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
           <li class="active">
-            <a rel="nofollow" href="#home" role="tab" data-toggle="tab">
-              <icon class="fa fa-home"></icon> Home
+            <a rel="nofollow" href="#CD0001" role="tab" data-toggle="tab">
+              <icon class="fa fa-home"></icon> CD0001
             </a>
           </li>
           <li>
@@ -59,24 +89,77 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div class="tab-pane fade active in" id="home">
-            <h2>Home Content Goes Here</h2>
-            <img src="http://lorempixel.com/400/400/cats/1" alt="Cats">
+          <div class="tab-pane fade active in" id="CD0001">
+            <h2>CD0001 Here</h2>
+
+            <form class="form-horizontal">
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">CityCode</label>
+                <div class="col-sm-10">
+                  <input type="text" data-bind="value:CityCode" class="form-control" id="inputEmail3" placeholder="CityCode">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Age</label>
+                <div class="col-sm-10">
+                  <input type="text" data-bind="value:Age" class="form-control" placeholder="Age">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-10">
+                  <input type="text" data-bind="value:Address" class="form-control" placeholder="Address">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">District</label>
+                <div class="col-sm-10">
+                  <select data-bind="options: District"></select> <small>Load default</small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Province、City</label>
+                <div class="col-sm-10">
+                  <select data-bind="options: Province,
+                   optionsCaption: 'Choose...'"></select>
+                  <select data-bind="options: City"></select>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="button" data-bind="css:{ loading: isLoading},click:loadProvinceAndCity" class="btn btn-success">Load Province & City</button>
+                  <button type="submit" class="btn btn-default" data-bind="css:{ loading: isCustomerLoading},click:loadCustomer">Load Customer Data</button>
+                  <button type="submit" class="btn btn-default" data-bind="click:look">Look Data</button>
+                </div>
+              </div>
+            </form>
+
           </div>
           <div class="tab-pane fade" id="profile">
             <h2>Profile Content Goes Here</h2>
-            <img src="http://lorempixel.com/400/400/cats/2" alt="Cats">
           </div>
           <div class="tab-pane fade" id="messages">
             <h2>Messages Content Goes Here</h2>
-            <img src="http://lorempixel.com/400/400/cats/3" alt="Cats">
           </div>
           <div class="tab-pane fade" id="settings">
             <h2>Settings Content Goes Here</h2>
-            <img src="http://lorempixel.com/400/400/cats/4" alt="Cats">
           </div>
         </div>
 
+
+      </div>
+      <div class="col-md-4">
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Well done!</h4>
+          <p>content.</p>
+          <hr>
+          <p class="mb-0">Whenever you need to</p>
+        </div>
+        
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Panel title</h3>
@@ -107,57 +190,42 @@
           </div>
         </div>
 
-
-      </div>
-      <div class="col-md-6">
-        <div class="alert alert-success" role="alert">
-          <h4 class="alert-heading">Well done!</h4>
-          <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-          <hr>
-          <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-        </div>
-        <div class="bd-callout bd-callout-warning">
-          <h4 id="conveying-meaning-to-assistive-technologies">Conveying meaning to assistive technologies</h4>
-
-          <p>Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g.
-            the visible text), or is included through alternative means, such as additional text hidden with the <code class="highlighter-rouge">.sr-only</code> class.</p>
-        </div>
       </div>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="//cdn.bootcss.com/knockout/3.4.2/knockout-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <script src="//cdn.bootcss.com/require.js/2.3.3/require.min.js"></script>
-  
-<script>
-  // contents of main.js:
-  require.config({
-    baseUrl: "/libs/",
-    paths: {
-      mbt: '../scripts/mbt'
-    }
-  });
+  <script src="//cdn.bootcss.com/require.js/2.3.3/require.min.js"></script>
 
-
-  require(['trans/cd001'], function(CD0001) {
-    // 初始化CD0001交易
-    var cd1 = new CD0001({
-      instansID: 45345,
-      show: function() {
-        console.log(this.Age);
-      },
-      pm: {
-        api: "127.0.0.2"
+  <script>
+    // contents of main.js:
+    require.config({
+      baseUrl: "/libs/",
+      paths: {
+        mbt: '../scripts/mbt'
       }
+    });
+
+
+    require(['trans/cd001'], function(CD0001) {
+      // 初始化CD0001交易
+      var cd1 = new CD0001({
+        instansID: 45345,
+        show: function() {
+          console.log(this.Age);
+        },
+        pm: {
+          api: "127.0.0.2"
+        }
+      })
+
+      cd1.then((viewModel) => {
+        ko.applyBindings(viewModel)
+        window.res = viewModel;
+      })
     })
-    
-    cd1.then((res) => {
-      console.log(res);
-      window.res = res;
-    })
-  })
-</script>
+  </script>
 
 </body>
 

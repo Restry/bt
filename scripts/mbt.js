@@ -1,9 +1,8 @@
 define(function() {
-
   return function(opt) {
     var local = function(ctx) {
       for (var d in opt.data) {
-        this[d] = opt.data[d];
+        this[d] = opt.data[d] instanceof Array ? ko.observableArray(opt.data[d]) : ko.observable(opt.data[d]);
       }
 
       for (var a in opt.methods) {
@@ -12,10 +11,11 @@ define(function() {
 
       return new Promise((resolve, reject) => {
         require(opt.dependencies, function() {
-          this.dependencies={};
+          this.dependencies = {};
           opt.dependencies.forEach((d, i) => {
             this.dependencies[d] = arguments[i];
           })
+          opt.mounted.apply(this);
           resolve(this);
         }.bind(this));
       });
@@ -25,6 +25,4 @@ define(function() {
     local.prototype = opt.context;
     return local;
   };
-
-
 })

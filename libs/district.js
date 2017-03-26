@@ -1,8 +1,5 @@
 define(function () {
     //Do setup work here
 
-    return {
-        color: "districe",
-        size: "unisize"
-    }
+    return ['海淀区','朝阳区','西城区']
 });
