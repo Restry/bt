@@ -18,7 +18,15 @@ define(function() {
 
       return obj;
     },
-
+    requirePromise: function(objs) {
+      return new Promise((resolve, reject) => {
+        require(objs, function() {
+          Promise.all(arguments).then((res) => {
+            resolve(res);
+          });
+        })
+      });
+    },
     loadCustomer: function() {
       var inputType = prompt("[演示]通过什么方式获取客户信息？1：刷卡、2：刷身份证、3：手动输入", "");
 
@@ -26,13 +34,13 @@ define(function() {
 
       switch (inputType) { // 每一种类型都做不同的事情，可能是调用API或其它
         case "1":
-          returnPromise = requirePromise(['viewmodels/depends/customer' + inputType + '.js']);
+          returnPromise = this.requirePromise(['app/viewmodels/depends/customer' + inputType + '.js']);
           break;
         case "2":
-          returnPromise = requirePromise(['viewmodels/depends/customer' + inputType + '.js']);
+          returnPromise = this.requirePromise(['app/viewmodels/depends/customer' + inputType + '.js']);
           break;
         case "3":
-          returnPromise = requirePromise(['viewmodels/depends/customer' + inputType + '.js']);
+          returnPromise = this.requirePromise(['app/viewmodels/depends/customer' + inputType + '.js']);
           break;
         default:
           alert('输入错误')

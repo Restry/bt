@@ -8,7 +8,6 @@ define(['knockout'], function(ko) {
 
     //客户的操作事件
     this.currentTrans = ko.observable();
-    this.isLoading = ko.observable(false);
     this.selectTrans = function(no) {
       return function(ctx, e) {
         this.currentTrans(no);

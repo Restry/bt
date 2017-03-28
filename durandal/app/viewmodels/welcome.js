@@ -3,18 +3,19 @@ define(['durandal/app', 'knockout',
   'viewmodels/utils',
   'viewmodels/customer'
 ], function(app, ko, dm, utils, Customer) {
-  var ctor = function() {
-    this.construct = Customer;
+  var ctor = function() { 
 
     this.displayName = '交易页面';
     this.description = 'MBT是基础，通过MBT初始化交易函数。再通过交易函数附加上下文得到交易的实例， 加载依赖信息';
-
+    
+    this.isLoading = ko.observable(false);
     // load System & Teller
     utils.loadSystemAndTeller(dm);
     // load Customer
     dm.refreshCustomer();
 
     Object.assign(this, dm.Customer());
+     
   };
 
   //Note: This module exports a function. That means that you, the developer, can create multiple instances.

@@ -1,4 +1,4 @@
-define(['viewmodels/utils'],function(utils) {
+define(['viewmodels/utils','viewmodels/customer'],function(utils,Customer) {
  
   bancs.dm = bancs.dm || {
     System: {

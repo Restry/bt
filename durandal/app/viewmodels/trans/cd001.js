@@ -1,4 +1,4 @@
-define(['mbt', 'knockout','viewmodels/dm'], function(mbt, ko,dm) {
+define(['mbt', 'knockout','viewmodels/dm','viewmodels/utils'], function(mbt, ko,dm,utils) {
   return new mbt({
     name: "",
     data: {
@@ -37,7 +37,7 @@ define(['mbt', 'knockout','viewmodels/dm'], function(mbt, ko,dm) {
       },
       loadProvinceAndCity: function() {
         this.isLoading(true);
-        requirePromise(['viewmodels/depends/province', 'viewmodels/depends/city']).then((res) => {
+        utils.requirePromise(['viewmodels/depends/province', 'viewmodels/depends/city']).then((res) => {
           console.log(res);
           this.Province(res[0]);
           this.City(res[1]);
