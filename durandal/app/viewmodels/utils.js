@@ -47,6 +47,39 @@ define(function() {
           break;
       }
       return returnPromise;
+    },
+    goTrans: function(transNO) {
+
+      return function(a,b) {
+        var ctx = bancs.dm.Customer();
+
+        ctx.isLoading(true);
+
+        require(['viewmodels/trans/' + transNO], function(trans) {
+          // 初始化CD0001交易
+          var cd1 = new trans({
+            instansID: 45345,
+            show: function() {
+              console.log(this.Age);
+            },
+            pm: {
+              api: "127.0.0.2"
+            }
+          })
+
+          cd1.then((viewModel) => {
+
+            ctx.Trancations.push({
+              tno: transNO,
+              model: viewModel,
+              view: 'viewmodels/trans/' + transNO + '.html'
+            })
+            ctx.isLoading(false);
+            ctx.currentTrans(transNO);
+
+          })
+        })
+      }
     }
   }
 });

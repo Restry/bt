@@ -1,5 +1,5 @@
-define(['viewmodels/utils','viewmodels/customer'],function(utils,Customer) {
- 
+define(['viewmodels/utils', 'viewmodels/customer'], function(utils, Customer) {
+
   bancs.dm = bancs.dm || {
     System: {
       BranchNo: '', //机构号
@@ -18,7 +18,7 @@ define(['viewmodels/utils','viewmodels/customer'],function(utils,Customer) {
     },
     Teller: {
       TellerNo: '', //柜员号
-      Name: '', //柜员姓名
+      Name: '李大然', //柜员姓名
       Level: '', //柜员级别
     },
     Customers: [{
@@ -29,15 +29,19 @@ define(['viewmodels/utils','viewmodels/customer'],function(utils,Customer) {
         amount: 0
       }]
     }],
-    
-    Customer: function(){
+
+    Customer: function() {
       return this.Customers[0];
     },
     refreshCustomer: function() {
       this.Customers = [];
-      utils.loadCustomer().then(function(res){ 
-        this.Customers.push(new Customer(res));
-      }.bind(this));
+      return new Promise((resolve, reject) => {
+        utils.loadCustomer().then((res)=> {
+          var cus = new Customer(res[0]);
+          this.Customers.push(cus);
+          resolve(cus);
+        });
+      })
     }
   }
 
