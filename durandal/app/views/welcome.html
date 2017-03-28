@@ -5,48 +5,39 @@
   <i class="fa fa-spinner fa-spin"></i>
 </div>
 <section data-bind="visible:!isLoading()">
-  <h2 data-bind="text:displayName"></h2>
   <blockquote data-bind="text:description"></blockquote>
 
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="active">
-      <a rel="nofollow" href="#CD0001" data-bind="click: goTrans" role="tab" data-toggle="tab">
-        <icon class="fa fa-home"></icon> CD0001
-      </a>
-    </li>
-    <li>
-      <a rel="nofollow" href="#profile" data-bind="click: goTrans" role="tab" data-toggle="tab">
-        <i class="fa fa-user"></i> Profile
-      </a>
-    </li>
-    <li>
-      <a rel="nofollow" href="#messages" data-bind="click: goTrans" role="tab" data-toggle="tab">
-        <i class="fa fa-envelope"></i> Messages
-      </a>
-    </li>
-    <li>
-      <a rel="nofollow" href="#settings" data-bind="click: goTrans" role="tab" data-toggle="tab">
-        <i class="fa fa-cog"></i> Settings
-      </a>
-    </li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div class="tab-pane fade active in" data-bind="compose:transViewModel" id="CD0001">
-
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">交易列表</h3>
     </div>
-    <div class="tab-pane fade" id="profile">
-      <h2>Profile Content Goes Here</h2>
-    </div>
-    <div class="tab-pane fade" id="messages">
-      <h2>Messages Content Goes Here</h2>
-    </div>
-    <div class="tab-pane fade" id="settings">
-      <h2>Settings Content Goes Here</h2>
+    <div class="panel-body">
+      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+      <button type="button" class="btn btn-primary" data-bind="click: goTrans('cd001')">CD001</button>
+
+      <!-- Indicates a successful or positive action -->
+      <button type="button" class="btn btn-success" data-bind="click: goTrans('cd002')">CD002</button>
+
     </div>
   </div>
 
+  </div>
+  <div data-bind="visible:rollTrans().length>0">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist" data-bind="foreach: rollTrans">
+      <li data-bind="css:{active:$parent.currentTrans()==tno}">
+        <a rel="nofollow" data-bind="attr:{href:'#'+tno}, click: $parent.selectTrans(tno)" role="tab" data-toggle="tab">
+          <icon class="fa fa-home"></icon>
+          <span data-bind="text:tno"></span>
+        </a>
+      </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane fade active in" data-bind="compose:currentViewModel">
+
+      </div>
+    </div>
+  </div>
 </section>

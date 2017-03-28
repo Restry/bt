@@ -1,9 +1,8 @@
-
 define(['mbt','knockout'], function(mbt,ko) {
   return new mbt({
     name:"",
     data: {
-      CityCode: "",
+      Name: "",
       Age: 18,
       Address: "点击下面按钮加载客户信息",
       District: [],
@@ -45,7 +44,7 @@ define(['mbt','knockout'], function(mbt,ko) {
     dependencies: ["viewmodels/depends/district"],
     context: {
       pm: {
-        api: "127.0.0.1"
+        api: "127.0.0.3"
       }
     }
   });

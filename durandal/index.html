@@ -33,12 +33,24 @@
         <div id="applicationHost">
             <div class="splash">
                 <div class="message">
-                    Durandal Starter Kit
+                    Durandal Starter
                 </div>
                 <i class="fa fa-spinner fa-spin"></i>
             </div>
         </div>
 
         <script src="lib/require/require.js" data-main="app/main"></script>
+      <script>
+      
+window.requirePromise = function(objs) {
+  return new Promise((resolve, reject) => {
+    require(objs, function() {
+      Promise.all(arguments).then((res) => {
+        resolve(res);
+      });
+    })
+  });
+}
+      </script>
     </body>
 </html>

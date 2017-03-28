@@ -5,32 +5,59 @@ define(['durandal/app', 'knockout'], function(app, ko) {
 
     this.transViewModel = ko.observable();
     this.isLoading = ko.observable(false);
+    this.rollTrans = ko.observableArray();
 
-    this.goTrans = function(ctx, event) {
-      this.isLoading(true);
-      var that = this;
-      require(['viewmodels/trans/cd001'], function(CD0001) {
-        // 初始化CD0001交易
-        var cd1 = new CD0001({
-          instansID: 45345,
-          show: function() {
-            console.log(this.Age);
-          },
-          pm: {
-            api: "127.0.0.2"
-          }
-        })
+    this.currentTrans = ko.observable();
 
-        cd1.then((viewModel) => {
-          ctx.transViewModel({
-            model: viewModel,
-            view: 'viewmodels/trans/cd001.html'
+    this.selectTrans = function(no) {
+      return function(ctx, e) {
+        this.currentTrans(no);
+      }.bind(this);
+    }
+
+    
+    
+    this.currentViewModel = ko.computed(function() {
+      var ct = this.currentTrans();
+      var currentModel = this.rollTrans().filter(function(d) {
+        return d.tno == ct;
+      });
+      return currentModel.length > 0 ? currentModel[0] : null;
+    }, this)
+
+    
+    this.goTrans = function(transNO) {
+
+      return function(ctx, e) {
+        this.isLoading(true);
+        var that = this;
+        require(['viewmodels/trans/' + transNO], function(trans) {
+          // 初始化CD0001交易
+          var cd1 = new trans({
+            instansID: 45345,
+            show: function() {
+              console.log(this.Age);
+            },
+            pm: {
+              api: "127.0.0.2"
+            }
           })
-          window.res = viewModel;
-          that.isLoading(false);
 
+          cd1.then((viewModel) => {
+
+            ctx.rollTrans.push({
+              tno: transNO,
+              model: viewModel,
+              view: 'viewmodels/trans/' + transNO + '.html'
+            })
+            ctx.isLoading(false);
+            ctx.currentTrans(transNO);
+
+          })
         })
-      })
+
+      }.bind(this);
+
     }
   };
 
