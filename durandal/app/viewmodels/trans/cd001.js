@@ -1,17 +1,23 @@
-
-define(['mbt','knockout'], function(mbt,ko) {
+define(['mbt', 'knockout','viewmodels/dm'], function(mbt, ko,dm) {
   return new mbt({
-    name:"",
+    name: "",
     data: {
       CityCode: "",
       Age: 18,
       Address: "点击下面按钮加载客户信息",
+      
       District: [],
       Province: [],
       City: [],
       isLoading: false,
       isCustomerLoading: false
     },
+    validation: [{
+      field: 'Age',
+      role: {
+        required: true
+      }
+    }],
     mounted: function() {
       this.District(this.dependencies[0]);
     },

@@ -14,18 +14,16 @@
     <div class="panel-body">
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <button type="button" class="btn btn-primary" data-bind="click: goTrans('cd001')">CD001</button>
-
-      <!-- Indicates a successful or positive action -->
       <button type="button" class="btn btn-success" data-bind="click: goTrans('cd002')">CD002</button>
 
+      <button type="button" class="btn btn-success" data-bind="click: loadCustomer">重载客户信息</button>
     </div>
   </div>
 
   </div>
-  <div data-bind="visible:rollTrans().length>0">
-
+  <div data-bind="visible:Trancations().length>0">
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist" data-bind="foreach: rollTrans">
+    <ul class="nav nav-tabs" role="tablist" data-bind="foreach: Trancations">
       <li data-bind="css:{active:$parent.currentTrans()==tno}">
         <a rel="nofollow" data-bind="attr:{href:'#'+tno}, click: $parent.selectTrans(tno)" role="tab" data-toggle="tab">
           <icon class="fa fa-home"></icon>

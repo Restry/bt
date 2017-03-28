@@ -21,12 +21,10 @@ define(['mbt','knockout'], function(mbt,ko) {
         this.isCustomerLoading(true);
         requirePromise(['viewmodels/depends/customer']).then((res) => {
           this.Age(res[0].Age);
-          this.CityCode(res[0].CityCode);
+          this.Name(res[0].CityCode);
           this.Address(res[0].Address);
           this.isCustomerLoading(false);
         })
-
-
       },
       loadProvinceAndCity: function() {
         this.isLoading(true);

@@ -19,7 +19,7 @@ requirejs.config({
 
 (function(obj) {
   obj.dm = obj.dm || null;
-
+  
 
   window.bancs = window.bancs || obj;
 }(window.bancs || {}))

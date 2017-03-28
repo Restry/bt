@@ -1,7 +1,7 @@
-define(function() {
-
+define(['viewmodels/utils'],function(utils) {
+ 
   bancs.dm = bancs.dm || {
-    system: {
+    System: {
       BranchNo: '', //机构号
       SupperOrg: '', //上级机构号
       BranchName: '', //机构名称
@@ -16,28 +16,28 @@ define(function() {
       ProvBranchNOEHR: '',
       ProvPrefixNumEHR: ''
     },
-    teller: {
+    Teller: {
       TellerNo: '', //柜员号
       Name: '', //柜员姓名
       Level: '', //柜员级别
     },
-    customers: [{
+    Customers: [{
       name: '',
-      card: '33345667657',
-      trans: [{
+      card: '',
+      Trancations: [{
         id: '',
         amount: 0
       }]
     }],
-    customer: function(){
-      return this.customers[0];
+    
+    Customer: function(){
+      return this.Customers[0];
     },
     refreshCustomer: function() {
-      this.customer = [];
-    },
-    init: function() {
-      this.system.BranchName = '北京分行';
-      this.teller.Name = "李然";
+      this.Customers = [];
+      utils.loadCustomer().then(function(res){ 
+        this.Customers.push(new Customer(res));
+      }.bind(this));
     }
   }
 
