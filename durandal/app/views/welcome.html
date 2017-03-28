@@ -1,0 +1,52 @@
+<div data-bind="visible:isLoading" class="splash">
+  <div class="message">
+    Loading
+  </div>
+  <i class="fa fa-spinner fa-spin"></i>
+</div>
+<section data-bind="visible:!isLoading()">
+  <h2 data-bind="text:displayName"></h2>
+  <blockquote data-bind="text:description"></blockquote>
+
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+      <a rel="nofollow" href="#CD0001" data-bind="click: goTrans" role="tab" data-toggle="tab">
+        <icon class="fa fa-home"></icon> CD0001
+      </a>
+    </li>
+    <li>
+      <a rel="nofollow" href="#profile" data-bind="click: goTrans" role="tab" data-toggle="tab">
+        <i class="fa fa-user"></i> Profile
+      </a>
+    </li>
+    <li>
+      <a rel="nofollow" href="#messages" data-bind="click: goTrans" role="tab" data-toggle="tab">
+        <i class="fa fa-envelope"></i> Messages
+      </a>
+    </li>
+    <li>
+      <a rel="nofollow" href="#settings" data-bind="click: goTrans" role="tab" data-toggle="tab">
+        <i class="fa fa-cog"></i> Settings
+      </a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane fade active in" data-bind="compose:transViewModel" id="CD0001">
+
+    </div>
+    <div class="tab-pane fade" id="profile">
+      <h2>Profile Content Goes Here</h2>
+    </div>
+    <div class="tab-pane fade" id="messages">
+      <h2>Messages Content Goes Here</h2>
+    </div>
+    <div class="tab-pane fade" id="settings">
+      <h2>Settings Content Goes Here</h2>
+    </div>
+  </div>
+
+</section>

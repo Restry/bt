@@ -1,0 +1,47 @@
+   <h2>CD0001 Here</h2>
+ 
+            <form class="form-horizontal">
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">CityCode</label>
+                <div class="col-sm-10">
+                  <input type="text" data-bind="value:CityCode" class="form-control" id="inputEmail3" placeholder="CityCode">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Age</label>
+                <div class="col-sm-10">
+                  <input type="text" data-bind="value:Age" class="form-control" placeholder="Age">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-10">
+                  <input type="text" data-bind="value:Address" class="form-control" placeholder="Address">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">District</label>
+                <div class="col-sm-10">
+                  <select data-bind="options: District"></select> <small>Load default</small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Province、City</label>
+                <div class="col-sm-10">
+                  <select data-bind="options: Province,
+                   optionsCaption: 'Choose...'"></select>
+                  <select data-bind="options: City"></select>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="button" data-bind="css:{ loading: isLoading},click:loadProvinceAndCity" class="btn btn-success">Load Province & City</button>
+                  <button type="submit" class="btn btn-default" data-bind="css:{ loading: isCustomerLoading},click:loadCustomer">Load Customer Data</button>
+                  <button type="submit" class="btn btn-default" data-bind="click:look">Look Data</button>
+                </div>
+              </div>
+            </form>
