@@ -1,6 +1,6 @@
-define(['mbt','knockout'], function(mbt,ko) {
+define(['mbt', 'knockout', 'viewmodels/utils'], function(mbt, ko, utils) {
   return new mbt({
-    name:"",
+    name: "",
     data: {
       Name: "",
       Age: 18,

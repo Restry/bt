@@ -26,7 +26,7 @@ define(['mbt', 'knockout','viewmodels/dm','viewmodels/utils'], function(mbt, ko,
         // console.log(this);
         this.show();
         this.isCustomerLoading(true);
-        requirePromise(['viewmodels/depends/customer']).then((res) => {
+        utils.requirePromise(['viewmodels/depends/customer']).then((res) => {
           this.Age(res[0].Age);
           this.CityCode(res[0].CityCode);
           this.Address(res[0].Address);
