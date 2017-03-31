@@ -16,15 +16,12 @@ requirejs.config({
     }
   }
 });
-
 (function(obj) {
   obj.dm = obj.dm || null;
-  
+
 
   window.bancs = window.bancs || obj;
 }(window.bancs || {}))
-
-
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'bootstrap'], function(system, app, viewLocator) {
   //>>excludeStart("build", true);
   system.debug(true);

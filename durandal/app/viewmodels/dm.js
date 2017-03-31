@@ -35,12 +35,13 @@ define(['viewmodels/utils', 'viewmodels/customer'], function(utils, Customer) {
     },
     refreshCustomer: function() {
       this.Customers = [];
-      return new Promise((resolve, reject) => {
-        utils.loadCustomer().then((res)=> {
-          var cus = new Customer(res[0]);
-          this.Customers.push(cus);
+      var that = this;
+      return new Promise(function(resolve, reject) {
+        utils.loadCustomer().then(function(res) {
+          var cus = new Customer(res);
+          that.Customers.push(cus);
           resolve(cus);
-        });
+        })
       })
     }
   }

@@ -1,7 +1,7 @@
 define(function() {
   //Do setup work here
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
+  return new Promise(function(resolve, reject)   {
+    setTimeout(function()  {
       resolve({
         name: "dora",
         card: '1000999983434',

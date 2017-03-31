@@ -26,23 +26,23 @@ define(['mbt', 'knockout','viewmodels/dm','viewmodels/utils'], function(mbt, ko,
         // console.log(this);
         this.show();
         this.isCustomerLoading(true);
-        utils.requirePromise(['viewmodels/depends/customer']).then((res) => {
+        utils.requirePromise(['viewmodels/depends/customer']).then(function(res) {
           this.Age(res[0].Age);
           this.CityCode(res[0].CityCode);
           this.Address(res[0].Address);
           this.isCustomerLoading(false);
-        })
+        }.bind(this))
 
 
       },
       loadProvinceAndCity: function() {
         this.isLoading(true);
-        utils.requirePromise(['viewmodels/depends/province', 'viewmodels/depends/city']).then((res) => {
+        utils.requirePromise(['viewmodels/depends/province', 'viewmodels/depends/city']).then(function(res) {
           console.log(res);
           this.Province(res[0]);
           this.City(res[1]);
           this.isLoading(false);
-        })
+        }.bind(this))
       },
       look: function() {
         alert(ko.toJSON(this));

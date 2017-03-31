@@ -1,8 +1,8 @@
 define(function() {
 
 
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
+  return new Promise(function(resolve, reject)  {
+    setTimeout(function() {
       resolve([
         '湖北',
         '河南',

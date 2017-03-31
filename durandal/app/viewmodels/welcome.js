@@ -8,13 +8,18 @@ define(['durandal/app', 'knockout',
     this.displayName = '交易页面';
     this.description = 'MBT是基础，通过MBT初始化交易函数。再通过交易函数附加上下文得到交易的实例， 加载依赖信息';
 
+    this.Command = ko.observable();
+    this.OnExec = function() {
+      alert(eval(this.Command()));
+    }
+
     this.isLoading = ko.observable(true);
     this.trancationView = ko.observable();
     this.goTrans = utils.goTrans;
-    this.loadCustomer=function(){
-      
-    }
-    // load System & Teller
+    this.loadCustomer = function() {
+
+      }
+      // load System & Teller
     utils.loadSystemAndTeller(dm);
     // load Customer
     dm.refreshCustomer().then(function(res) {

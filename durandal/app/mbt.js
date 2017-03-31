@@ -9,7 +9,7 @@ define(['knockout'],function(ko) {
         this[a] = opt.methods[a].bind(Object.assign(this, ctx));
       }
 
-      return new Promise((resolve, reject) => {
+      return new Promise(function(resolve, reject) {
         require(opt.dependencies, function() {
           this.dependencies =arguments;// {};
 //           opt.dependencies.forEach((d, i) => {
@@ -18,7 +18,7 @@ define(['knockout'],function(ko) {
           opt.mounted.apply(this);
           resolve(this);
         }.bind(this));
-      });
+      }.bind(this));
 
     }
 

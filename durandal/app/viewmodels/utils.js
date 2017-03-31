@@ -19,12 +19,12 @@ define(function() {
       return obj;
     },
     requirePromise: function(objs) {
-      return new Promise((resolve, reject) => {
-        require(objs, function() {
-          Promise.all(arguments).then((res) => {
-            resolve(res);
-          });
-        })
+      return new Promise(function(resolve, reject) {
+        require(objs, resolve);//function() {
+          //Promise.all(arguments).then(function(res) {
+          //  resolve(arguments);
+          //});
+       // })
       });
     },
     loadCustomer: function() {
@@ -67,7 +67,7 @@ define(function() {
             }
           })
 
-          cd1.then((viewModel) => {
+          cd1.then(function(viewModel) {
 
             ctx.Trancations.push({
               tno: transNO,
