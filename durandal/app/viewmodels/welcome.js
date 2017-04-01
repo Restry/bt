@@ -2,27 +2,35 @@ define(['durandal/app', 'knockout',
   'viewmodels/dm',
   'viewmodels/utils',
   'viewmodels/customer'
-], function(app, ko, dm, utils, Customer) {
-  var ctor = function() {
+], function (app, ko, dm, utils, Customer) {
+  var ctor = function () {
 
     this.displayName = '交易页面';
     this.description = 'MBT是基础，通过MBT初始化交易函数。再通过交易函数附加上下文得到交易的实例， 加载依赖信息';
 
     this.Command = ko.observable();
-    this.OnExec = function() {
+    this.OnExec = function () {
       alert(eval(this.Command()));
     }
 
     this.isLoading = ko.observable(true);
     this.trancationView = ko.observable();
     this.goTrans = utils.goTrans;
-    this.loadCustomer = function() {
+    this.loadCustomer = function () {
 
-      }
-      // load System & Teller
-    utils.loadSystemAndTeller(dm);
+    }
+    // load System & Teller
+    var res = cpie.LoadSystemAndTeller();
+
+
+    cpie.OnExternalEvent = function (field, value) {
+      bancs.dm.Customer.Trancations()[0].model[field](value);
+    };
+
+    Object.assign(bancs.dm, JSON.parse(res));
     // load Customer
-    dm.refreshCustomer().then(function(res) {
+    dm.refreshCustomer().then(function (res) {
+      // alert(JSON.stringify(res));
       this.trancationView({
         model: res,
         view: 'views/trans'
