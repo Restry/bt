@@ -7,14 +7,46 @@ define(['knockout', 'viewmodels/utils'], function (ko, utils) {
     });
     return target;
   };
+  ko.subscribable.fn.cusFormat = function (format) {
+    var target = this;
+    var writeTarget = function (value) {
+      var stripped = value.replace(/[^0-9.-]/g, '');
+      target(parseFloat(stripped));
+    };
+    var result = ko.computed({
+      read: function () {
+        return target();
+      },
+      write: writeTarget
+    });
+    result.formatted = ko.computed({
+      read: function () {
+        return format(target());
+      },
+      write: writeTarget
+    });
+    result.isNegative = ko.computed(function () {
+      return target() < 0;
+    });
+    return result;
+  };
 
   return function (opt) {
     var local = function (ctx) {
 
       for (var d in opt.data) {
-        this[d] = opt.data[d] instanceof Array ?
-          ko.observableArray(opt.data[d]) :
-          ko.observable(opt.data[d]).extend({ logChange: d });
+        var field = opt.data[d];
+        this[d] = field instanceof Array ? ko.observableArray(field) : ko.observable(field).extend({ logChange: d });
+
+        if (field instanceof Object) {
+          this[d](d.value);
+          if (d.metadata && d.metadata.role) {
+            this[d].extend(d.metadata.role); //验证加载
+          }
+          if (d.metadata && d.metadata.format) {
+            this[d].cusFormat(d.metadata.format); //验证加载
+          }
+        }
       }
 
       for (var a in opt.methods) {
