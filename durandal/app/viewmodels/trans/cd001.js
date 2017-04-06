@@ -2,7 +2,7 @@ define(['mbt', 'knockout', 'viewmodels/dm', 'viewmodels/utils'], function (mbt, 
   return new mbt({
     name: "",
     data: {
-
+      Branch:{ value: dm.Teller.Branch },
       CityCode: {
         value: 'BJ',
         metadata: {
