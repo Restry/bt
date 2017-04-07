@@ -27,6 +27,7 @@ define(['durandal/app', 'knockout',
     utils.loadSystemAndTeller(dm);
     // load Customer
     dm.refreshCustomer().then(function (res) {
+
       this.trancationView({
         model: res,
         view: 'views/trans'
