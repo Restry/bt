@@ -7,7 +7,7 @@ define(function() {
         card: '1000999983434',
         CityCode:'BJ',
         Age:38,
-        Address:'北京市海淀区永丰路299号'
+        Address:'Knockout tracks dependencies'
       })
    // }, Math.random()*1000)
   })

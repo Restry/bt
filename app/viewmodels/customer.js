@@ -14,6 +14,7 @@ define(['knockout'], function(ko) {
         this.currentTrans(no);
       }.bind(this);
     }
+    this.Trancations = ko.observableArray();
     this.currentViewModel = ko.computed(function() {
       var ct = this.currentTrans();
       var currentModel = this.Trancations().filter(function(d) {
@@ -22,7 +23,7 @@ define(['knockout'], function(ko) {
       return currentModel.length > 0 ? currentModel[0] : null;
     }, this)
   }
-  Customer.prototype.Trancations = ko.observableArray();
+  // Customer.prototype.Trancations = ko.observableArray();
 
   return Customer;
 })

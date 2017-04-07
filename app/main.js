@@ -5,6 +5,7 @@ requirejs.config({
     'plugins': '../lib/durandal/js/plugins',
     'transitions': '../lib/durandal/js/transitions',
     'knockout': '../lib/knockout/knockout-3.4.0',
+    'knockout.validation':'../lib/knockout/knockout.validation.min',
     'bootstrap': '../lib/bootstrap/js/bootstrap',
     'jquery': '../lib/jquery/jquery-1.9.1',
     'mbt': './mbt'
