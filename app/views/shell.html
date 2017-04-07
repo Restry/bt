@@ -1,5 +1,5 @@
 <div>
-  <nav class="die navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle Navigation</span>
@@ -29,6 +29,17 @@
       <form class="navbar-form navbar-right" role="search" data-bind="submit:search">
         <div class="form-group">
 
+          <div class=" dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              <span data-bind="text:bancs.dm.Teller.Name"></span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">More</a></li>
+            </ul>
+          </div>
         </div>
       </form>
 
