@@ -1,11 +1,11 @@
-define(function() {
+define(function () {
   return {
     /*
      * 传入参数：是系统和柜员的结构，到C#端获取数据，然后返回JS的dm
      * 调用C#接口，接口中通过传入的结构去UserInfo及Env中获取相关字段的数据，并生成C#端数据层
      * JS -> C# -> JS
      */
-    loadSystemAndTeller: function(obj) {
+    loadSystemAndTeller: function (obj) {
       obj.System.BranchNo = "NO1111";
       obj.System.SupperOrg = "NO1001";
       obj.System.BranchName = "NO0101";
@@ -18,16 +18,24 @@ define(function() {
 
       return obj;
     },
-    requirePromise: function(objs) {
-      return new Promise(function(resolve, reject) {
-        require(objs, resolve);//function() {
-          //Promise.all(arguments).then(function(res) {
-          //  resolve(arguments);
-          //});
-       // })
+    requirePromise: function (objs) {
+      return new Promise(function (resolve, reject) {
+        if (objs instanceof Array && objs.length > 1) {
+          require(objs, function () {
+            Promise.all(arguments).then(function (res) {
+              resolve(res);
+            });
+          })
+        } else {
+          require(objs, resolve);
+        }//function() {
+        //Promise.all(arguments).then(function(res) {
+        //  resolve(arguments);
+        //});
+        // })
       });
     },
-    loadCustomer: function() {
+    loadCustomer: function () {
       var inputType = prompt("[演示]通过什么方式获取客户信息？1：刷卡、2：刷身份证、3：手动输入", "");
 
       var returnPromise = null;
@@ -48,18 +56,18 @@ define(function() {
       }
       return returnPromise;
     },
-    goTrans: function(transNO) {
+    goTrans: function (transNO) {
 
-      return function(a,b) {
+      return function (a, b) {
         var ctx = bancs.dm.Customer();
 
         ctx.isLoading(true);
 
-        require(['viewmodels/trans/' + transNO], function(trans) {
+        require(['viewmodels/trans/' + transNO], function (trans) {
           // 初始化CD0001交易
           var cd1 = new trans({
             instansID: 45345,
-            show: function() {
+            show: function () {
               console.log(this.Age);
             },
             pm: {
@@ -67,7 +75,7 @@ define(function() {
             }
           })
 
-          cd1.then(function(viewModel) {
+          cd1.then(function (viewModel) {
 
             ctx.Trancations.push({
               tno: transNO,
